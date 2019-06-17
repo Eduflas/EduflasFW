@@ -17,5 +17,10 @@ class IndexController extends Controller{
 
     }
 
+    public function holaroy(){
+    	echo 'Hola yo';
+    	die();
+    }
+
 
 }
