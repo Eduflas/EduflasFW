@@ -18,18 +18,15 @@ require_once 'core/FrontController.php';
 
 //Lanzamos controlador y acción
 
-
-	$Controller = $path_info['call_parts'][0];
-	$Accion = $path_info['call_parts'][1];
-
-	echo $Controller.'<br>'.$accion;
+	$controller = (isset($path_info['call_parts'][0]))? $path_info['call_parts'][0]:'';
+	$accion = (isset($path_info['call_parts'][1]))? $path_info['call_parts'][1]:'';
 
 
-if(isset($_GET["controller"])){
-    $controllerObj=loadController($path_info['call_parts'][0]);
+if(isset($controller) && !empty($controller)){
+    $controllerObj = loadController($controller);
     initAction($controllerObj);
 }else{
-    $controllerObj=loadController(CONTROLADOR_DEFECTO);
+    $controllerObj = loadController(CONTROLADOR_DEFECTO);
     initAction($controllerObj);
 }
 

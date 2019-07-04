@@ -4,6 +4,7 @@
  * Date: 14/06/2019
  */
 function loadController($controller){
+
     $controller = ucwords($controller).'Controller';
     $strFileController = 'controller/'.$controller.'.php';
 
@@ -16,16 +17,18 @@ function loadController($controller){
     return $controllerObj;
 }
 
-function loadAction($controllerObj,$action){
-    $controllerObj->$action();
-}
 
 function initAction($controllerObj){
-    if(isset($_GET["action"]) && method_exists($controllerObj, $_GET["action"])){
-        loadAction($controllerObj, $_GET["action"]);
+    if($GLOBALS['accion'] && method_exists($controllerObj, $GLOBALS['accion'])){
+        loadAction($controllerObj, $GLOBALS['accion']);
     }else{
         loadAction($controllerObj, ACCION_DEFECTO);
     }
+}
+
+
+function loadAction($controllerObj,$action){
+    $controllerObj->$action();
 }
 
 function parse_path() {

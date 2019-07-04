@@ -21,15 +21,17 @@ class Controller{
     /*
     * insert params from controller into the view
     */
-    public function view($vista,$datos){
-        foreach ($datos as $id_assoc => $valor) {
+    public function view($vista,$data = null){
+        if (!empty($data))
+        foreach ($data as $id_assoc => $valor) {
             ${$id_assoc}=$valor;
         }
 
         require_once 'Helper.php';
         $helper = new Helper();
-
+        require_once 'core/Head.php';
         require_once 'view/'.$vista.'View.php';
+        require_once 'core/Footer.php';
     }
 
     public function redirect($controlador=CONTROLADOR_DEFECTO,$accion=ACCION_DEFECTO){
